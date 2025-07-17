@@ -473,96 +473,281 @@ body {
     font-weight: 500;
 }
 
-/* Experience Section */
+/* Experience Section - Train Track Timeline */
 .experience {
     padding: 100px 0;
     background: rgba(248, 246, 243, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(139, 90, 60, 0.1) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .timeline {
     position: relative;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 2rem 0;
 }
 
+/* Curved Train Track */
 .timeline::before {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, #8b5a3c, #d4af37);
-    transform: translateX(-50%);
+    left: 0;
+    top: 50px;
+    width: 100%;
+    height: 400px;
+    background: none;
+    z-index: 1;
+}
+
+/* Main curved track */
+.timeline::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    top: 50px;
+    width: 90%;
+    height: 400px;
+    border: 4px solid #8b5a3c;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: none;
+    z-index: 1;
+    box-shadow: 
+        inset 0 0 0 2px #d4af37,
+        0 4px 15px rgba(139, 90, 60, 0.3);
+}
+
+/* Train track rails */
+.timeline .track-rails {
+    position: absolute;
+    left: 5%;
+    top: 50px;
+    width: 90%;
+    height: 400px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.timeline .track-rails::before,
+.timeline .track-rails::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #5a4037;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-sizing: border-box;
+}
+
+.timeline .track-rails::before {
+    transform: scale(0.95);
+    border-color: #8b5a3c;
+}
+
+.timeline .track-rails::after {
+    transform: scale(1.05);
+    border-color: #8b5a3c;
+}
+
+/* Railway ties/sleepers */
+.timeline .railway-ties {
+    position: absolute;
+    left: 5%;
+    top: 50px;
+    width: 90%;
+    height: 400px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.timeline .railway-ties::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-conic-gradient(
+            from 0deg at 50% 50%,
+            transparent 0deg,
+            transparent 8deg,
+            rgba(139, 90, 60, 0.4) 8deg,
+            rgba(139, 90, 60, 0.4) 12deg,
+            transparent 12deg,
+            transparent 20deg
+        );
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    mask: 
+        radial-gradient(ellipse 90% 400px at 50% 50%, black 0%, black 48%, transparent 52%);
 }
 
 .timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-    width: 50%;
+    position: absolute;
+    z-index: 10;
+    width: 280px;
 }
 
-.timeline-item:nth-child(odd) {
-    left: 0;
-    padding-right: 3rem;
+/* Station positioning along the curved track */
+.timeline-item:nth-child(1) {
+    left: 8%;
+    top: 80px;
+    transform: rotate(-15deg);
 }
 
-.timeline-item:nth-child(even) {
-    left: 50%;
-    padding-left: 3rem;
+.timeline-item:nth-child(2) {
+    right: 8%;
+    top: 200px;
+    transform: rotate(15deg);
 }
 
+/* Add more positions for additional timeline items */
+.timeline-item:nth-child(3) {
+    left: 15%;
+    top: 350px;
+    transform: rotate(-8deg);
+}
+
+.timeline-item:nth-child(4) {
+    right: 15%;
+    top: 450px;
+    transform: rotate(8deg);
+}
+
+/* Train Station Design */
 .timeline-marker {
     position: absolute;
-    width: 16px;
-    height: 16px;
-    background: #8b5a3c;
-    border-radius: 50%;
-    top: 0;
-    border: 4px solid white;
-    box-shadow: 0 0 0 4px rgba(139, 90, 60, 0.2);
+    width: 60px;
+    height: 80px;
+    background: linear-gradient(135deg, #8b5a3c 0%, #d4af37 100%);
+    border-radius: 8px 8px 0 0;
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 8px 25px rgba(139, 90, 60, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    z-index: 15;
 }
 
+/* Station roof */
+.timeline-marker::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -8px;
+    width: 76px;
+    height: 20px;
+    background: #5a4037;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(90, 64, 55, 0.5);
+}
+
+/* Station platform */
+.timeline-marker::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: -15px;
+    width: 90px;
+    height: 8px;
+    background: #8b5a3c;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(139, 90, 60, 0.3);
+}
+
+/* Station windows */
 .timeline-item:nth-child(odd) .timeline-marker {
-    right: -8px;
+    background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 100%);
 }
 
 .timeline-item:nth-child(even) .timeline-marker {
-    left: -8px;
-    background: #d4af37;
-    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    background: linear-gradient(135deg, #8b5a3c 0%, #a67c5a 100%);
+}
+
+/* Add station details */
+.timeline-marker .station-details {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #8b5a3c;
+    font-weight: bold;
 }
 
 .timeline-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 
+        0 15px 40px rgba(139, 90, 60, 0.2),
+        0 5px 15px rgba(212, 175, 55, 0.1);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    transform: rotate(0deg) !important;
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Station name plates */
+.timeline-content::before {
+    content: '🚂';
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #8b5a3c;
+    color: white;
+    padding: 8px 12px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(139, 90, 60, 0.3);
 }
 
 .timeline-content h3 {
     color: #8b5a3c;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
-    font-weight: 600;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(139, 90, 60, 0.1);
 }
 
 .timeline-content h4 {
     color: #5a6c7d;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .timeline-date {
-    color: #8b5a3c;
+    color: white;
+    background: linear-gradient(135deg, #8b5a3c, #d4af37);
     font-size: 0.9rem;
-    font-weight: 500;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     display: inline-block;
     margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(139, 90, 60, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-content ul {
@@ -574,6 +759,63 @@ body {
     margin-bottom: 0.8rem;
     line-height: 1.6;
     color: #2c3e50;
+    position: relative;
+}
+
+.timeline-content li::before {
+    content: '✨';
+    position: absolute;
+    left: -1.5rem;
+    color: #d4af37;
+}
+
+/* Animated train */
+.timeline .train {
+    position: absolute;
+    width: 40px;
+    height: 25px;
+    background: linear-gradient(135deg, #8b5a3c, #d4af37);
+    border-radius: 8px;
+    z-index: 20;
+    animation: trainJourney 15s infinite linear;
+    box-shadow: 0 4px 15px rgba(139, 90, 60, 0.4);
+}
+
+.timeline .train::before {
+    content: '🚂';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+}
+
+@keyframes trainJourney {
+    0% {
+        left: 5%;
+        top: 100px;
+        transform: rotate(-15deg);
+    }
+    25% {
+        left: 50%;
+        top: 50px;
+        transform: rotate(0deg);
+    }
+    50% {
+        right: 5%;
+        top: 100px;
+        transform: rotate(15deg);
+    }
+    75% {
+        left: 50%;
+        top: 400px;
+        transform: rotate(0deg);
+    }
+    100% {
+        left: 5%;
+        top: 100px;
+        transform: rotate(-15deg);
+    }
 }
 
 /* Projects Section */
@@ -1018,20 +1260,34 @@ body {
         gap: 2rem;
     }
 
-    .timeline::before {
-        left: 20px;
+    .timeline::after {
+        left: 2%;
+        width: 96%;
+        height: 300px;
     }
-
+    
     .timeline-item {
+        position: relative;
         width: 100%;
         left: 0 !important;
-        padding-left: 4rem !important;
-        padding-right: 0 !important;
-    }
-
-    .timeline-marker {
-        left: 12px !important;
         right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        margin-bottom: 3rem;
+    }
+    
+    .timeline-marker {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 0 auto 1rem;
+        width: 50px;
+        height: 60px;
+    }
+    
+    .timeline .train {
+        display: none;
     }
 
     .projects-grid {
