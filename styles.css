@@ -601,34 +601,32 @@ body {
     width: 280px;
 }
 
-/* Station positioning along the curved track - Fixed UK station overlap */
+/* Station positioning along the curved track - Better separation */
 .timeline-item:nth-child(1) {
-    right: 10%; /* Moved slightly inward to avoid edge overlap */
-    top: 120px; /* Adjusted vertical position */
-    transform: rotate(20deg);
-    z-index: 25; /* Higher z-index to ensure visibility */
+    right: 5%; /* UK station positioned at far right */
+    top: 60px; /* Moved higher up */
+    transform: rotate(30deg);
+    z-index: 25;
 }
 
 .timeline-item:nth-child(2) {
-    left: 10%; /* Moved slightly inward for balance */
-    top: 280px;
-    transform: rotate(-20deg);
+    left: 5%; /* India station positioned at far left */
+    top: 350px; /* Moved lower down */
+    transform: rotate(-30deg);
     z-index: 25;
 }
 
 /* Add more positions for additional timeline items */
 .timeline-item:nth-child(3) {
-    right: 15%;
-    top: 400px;
-    transform: rotate(8deg);
-    z-index: 25;
+    right: 20%;
+    top: 450px;
+    transform: rotate(10deg);
 }
 
 .timeline-item:nth-child(4) {
-    left: 15%;
+    left: 20%;
     top: 500px;
-    transform: rotate(-8deg);
-    z-index: 25;
+    transform: rotate(-10deg);
 }
 
 /* Train Station Design */
