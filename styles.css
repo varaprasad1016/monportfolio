@@ -601,15 +601,15 @@ body {
     width: 280px;
 }
 
-/* Station positioning along the curved track - Adjusted for better spacing */
+/* Station positioning along the curved track - UK station moved to right corner */
 .timeline-item:nth-child(1) {
-    right: 8%;
+    right: 5%; /* Moved further to the right corner */
     top: 80px;
-    transform: rotate(15deg);
+    transform: rotate(25deg); /* Increased rotation for right corner positioning */
 }
 
 .timeline-item:nth-child(2) {
-    left: 8%;
+    left: 8%; /* India station stays on the left */
     top: 250px;
     transform: rotate(-15deg);
 }
