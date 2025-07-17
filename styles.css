@@ -603,28 +603,28 @@ body {
 
 /* Station positioning along the curved track - Adjusted for better spacing */
 .timeline-item:nth-child(1) {
-    left: 8%;
-    top: 100px;
-    transform: rotate(-15deg);
+    right: 8%;
+    top: 80px;
+    transform: rotate(15deg);
 }
 
 .timeline-item:nth-child(2) {
-    right: 8%;
+    left: 8%;
     top: 250px;
-    transform: rotate(15deg);
+    transform: rotate(-15deg);
 }
 
 /* Add more positions for additional timeline items */
 .timeline-item:nth-child(3) {
-    left: 15%;
+    right: 15%;
     top: 400px;
-    transform: rotate(-8deg);
+    transform: rotate(8deg);
 }
 
 .timeline-item:nth-child(4) {
-    right: 15%;
+    left: 15%;
     top: 500px;
-    transform: rotate(8deg);
+    transform: rotate(-8deg);
 }
 
 /* Train Station Design */
