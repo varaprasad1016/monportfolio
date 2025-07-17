@@ -2,15 +2,15 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
+hamburger?.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    hamburger?.classList.remove('active');
+    navMenu?.classList.remove('active');
 }));
 
 // Smooth scrolling for navigation links
@@ -82,13 +82,12 @@ if (document.querySelector('.profile-card')) {
 }
 
 // Contact form handling
-const contactForm = document.querySelector('.form');
+const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(contactForm);
         const name = contactForm.querySelector('input[type="text"]').value;
         const email = contactForm.querySelector('input[type="email"]').value;
         const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
@@ -106,7 +105,7 @@ if (contactForm) {
     });
 }
 
-// Typing animation for hero title
+// Typing animation for hero title (fixed version)
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
@@ -126,9 +125,17 @@ function typeWriter(element, text, speed = 100) {
 window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
+        // Get just the text content, not the HTML
+        const nameSpan = heroTitle.querySelector('.gradient-text');
+        const name = nameSpan ? nameSpan.textContent : 'Mounika Kallepalli';
+        const displayText = `Hi, I'm ${name}`;
+        
+        // Clear the element and set up for typing
+        heroTitle.innerHTML = 'Hi, I\'m <span class="gradient-text"></span>';
+        const gradientSpan = heroTitle.querySelector('.gradient-text');
+        
         setTimeout(() => {
-            typeWriter(heroTitle, originalText, 50);
+            typeWriter(gradientSpan, name, 50);
         }, 1000);
     }
 });
@@ -140,7 +147,7 @@ window.addEventListener('scroll', () => {
     
     parallaxElements.forEach((element, index) => {
         const speed = 0.5 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
+        element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
     });
 });
 
@@ -172,6 +179,42 @@ document.querySelectorAll('.project-card').forEach(card => {
     
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Color splash animation
+function createColorSplash() {
+    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+    const splash = document.createElement('div');
+    
+    splash.style.position = 'fixed';
+    splash.style.width = Math.random() * 100 + 50 + 'px';
+    splash.style.height = splash.style.width;
+    splash.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
+    splash.style.borderRadius = '50%';
+    splash.style.opacity = '0.1';
+    splash.style.pointerEvents = 'none';
+    splash.style.zIndex = '-1';
+    splash.style.left = Math.random() * window.innerWidth + 'px';
+    splash.style.top = Math.random() * window.innerHeight + 'px';
+    splash.style.animation = 'float 8s ease-in-out infinite';
+    
+    document.body.appendChild(splash);
+    
+    setTimeout(() => {
+        splash.remove();
+    }, 8000);
+}
+
+// Create random color splashes
+setInterval(createColorSplash, 3000);
+
+// Initialize animations on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Add initial fade-in class to elements
+    const animatedElements = document.querySelectorAll('.section-title, .hero-description, .about-intro, .skill-category, .project-card, .timeline-item');
+    animatedElements.forEach(el => {
+        el.classList.add('fade-in');
     });
 });
 
