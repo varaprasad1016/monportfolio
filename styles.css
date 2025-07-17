@@ -475,10 +475,11 @@ body {
 
 /* Experience Section - Train Track Timeline */
 .experience {
-    padding: 100px 0;
+    padding: 100px 0 150px 0;
     background: rgba(248, 246, 243, 0.8);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    min-height: 700px;
 }
 
 .experience::before {
@@ -499,6 +500,7 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem 0;
+    min-height: 600px;
 }
 
 /* Curved Train Track */
@@ -508,7 +510,7 @@ body {
     left: 0;
     top: 50px;
     width: 100%;
-    height: 400px;
+    height: 500px;
     background: none;
     z-index: 1;
 }
@@ -520,7 +522,7 @@ body {
     left: 5%;
     top: 50px;
     width: 90%;
-    height: 400px;
+    height: 500px;
     border: 4px solid #8b5a3c;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     background: none;
@@ -536,7 +538,7 @@ body {
     left: 5%;
     top: 50px;
     width: 90%;
-    height: 400px;
+    height: 500px;
     z-index: 2;
     pointer-events: none;
 }
@@ -568,7 +570,7 @@ body {
     left: 5%;
     top: 50px;
     width: 90%;
-    height: 400px;
+    height: 500px;
     z-index: 1;
     pointer-events: none;
 }
@@ -590,7 +592,7 @@ body {
         );
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     mask: 
-        radial-gradient(ellipse 90% 400px at 50% 50%, black 0%, black 48%, transparent 52%);
+        radial-gradient(ellipse 90% 500px at 50% 50%, black 0%, black 48%, transparent 52%);
 }
 
 .timeline-item {
@@ -599,29 +601,29 @@ body {
     width: 280px;
 }
 
-/* Station positioning along the curved track */
+/* Station positioning along the curved track - Adjusted for better spacing */
 .timeline-item:nth-child(1) {
     left: 8%;
-    top: 80px;
+    top: 100px;
     transform: rotate(-15deg);
 }
 
 .timeline-item:nth-child(2) {
     right: 8%;
-    top: 200px;
+    top: 250px;
     transform: rotate(15deg);
 }
 
 /* Add more positions for additional timeline items */
 .timeline-item:nth-child(3) {
     left: 15%;
-    top: 350px;
+    top: 400px;
     transform: rotate(-8deg);
 }
 
 .timeline-item:nth-child(4) {
     right: 15%;
-    top: 450px;
+    top: 500px;
     transform: rotate(8deg);
 }
 
@@ -818,10 +820,13 @@ body {
     }
 }
 
-/* Projects Section */
+/* Projects Section - Add top margin to prevent overlap */
 .projects {
     padding: 100px 0;
     background: rgba(255, 255, 255, 0.6);
+    margin-top: 50px;
+    position: relative;
+    z-index: 5;
 }
 
 .projects-grid {
