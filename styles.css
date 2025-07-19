@@ -501,58 +501,57 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 150px 20px;
-    min-height: 800px;
+    padding: 50px 20px;
+    min-height: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-/* Curved track */
-.timeline::after {
-    content: '';
-    position: absolute;
-    left: 5%;
-    top: 250px;
-    width: 90%;
-    height: 150px;
-    border: none;
-    border-bottom: 4px solid #8b5a3c;
-    border-radius: 0 0 50% 50%;
-    background: none;
-    z-index: 1;
+/* Remove curved track */
+.timeline::after,
+.track-rails,
+.railway-ties,
+.train {
+    display: none;
 }
 
 /* Timeline items */
 .timeline-item {
-    position: absolute;
-    width: 300px;
+    position: relative;
+    width: 45%;
+    margin: 0;
+    padding: 20px;
 }
 
-/* UK position - moved higher and more to the right */
+/* UK position */
 .timeline-item:nth-child(1) {
-    right: 5%;
-    top: 50px;
+    order: 2;
+    position: relative;
+    right: auto;
+    top: auto;
 }
 
-/* India position - moved lower and more to the left */
+/* India position */
 .timeline-item:nth-child(2) {
-    left: 5%;
-    top: 350px;
+    order: 1;
+    position: relative;
+    left: auto;
+    top: auto;
 }
 
 /* Station markers */
 .timeline-marker {
-    position: absolute;
+    position: relative;
     width: 50px;
     height: 60px;
     background: linear-gradient(135deg, #8b5a3c 0%, #d4af37 100%);
     border-radius: 8px 8px 0 0;
-    bottom: -80px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto 20px;
     box-shadow: 0 4px 15px rgba(139, 90, 60, 0.4);
-    z-index: 15;
 }
 
-/* Station details (country indicators) */
+/* Station details */
 .station-details {
     position: absolute;
     top: 50%;
@@ -562,7 +561,18 @@ body {
     font-weight: bold;
     font-size: 14px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    z-index: 20;
+}
+
+/* Add connecting line between experiences */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    right: 25%;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5a3c, #d4af37);
+    transform: translateY(-50%);
 }
 
 /* Content cards */
