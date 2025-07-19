@@ -533,14 +533,20 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Simple positioning along the curve */
+/* Timeline items positioning */
 .timeline-item:nth-child(1) {
+    position: absolute;
+    right: 5%;
+    top: 50px;
     margin-left: 0;
     transform: none;
 }
 
 .timeline-item:nth-child(2) {
-    margin-left: auto;
+    position: absolute;
+    left: 5%;
+    top: 50px;
+    margin-left: 0;
     margin-right: 0;
     transform: none;
 }
@@ -565,6 +571,63 @@ body {
         0 8px 25px rgba(139, 90, 60, 0.4),
         inset 0 2px 0 rgba(255, 255, 255, 0.3);
     z-index: 15;
+}
+
+/* UK Station marker positioning */
+.timeline-item:nth-child(1) .timeline-marker {
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    background: linear-gradient(135deg, #8b5a3c 0%, #d4af37 100%);
+    border-radius: 8px 8px 0 0;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 8px 25px rgba(139, 90, 60, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    z-index: 15;
+}
+
+/* India Station marker positioning */
+.timeline-item:nth-child(2) .timeline-marker {
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    background: linear-gradient(135deg, #8b5a3c 0%, #d4af37 100%);
+    border-radius: 8px 8px 0 0;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 8px 25px rgba(139, 90, 60, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    z-index: 15;
+}
+
+/* Add country indicators */
+.timeline-item:nth-child(1) .timeline-marker::before {
+    content: 'UK';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 20;
+}
+
+.timeline-item:nth-child(2) .timeline-marker::before {
+    content: 'IN';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 20;
 }
 
 /* Station roof */
