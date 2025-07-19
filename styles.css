@@ -495,12 +495,13 @@ body {
     pointer-events: none;
 }
 
+/* Ensure timeline has enough height */
 .timeline {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem 0;
-    min-height: 300px;
+    min-height: 400px;
 }
 
 /* Simple curved track from left to right */
@@ -533,22 +534,21 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Timeline items positioning */
+/* Fix timeline positioning to ensure both items are visible */
 .timeline-item:nth-child(1) {
     position: absolute;
-    right: 5%;
+    right: 2%;
     top: 50px;
-    margin-left: 0;
-    transform: none;
+    width: 400px;
+    z-index: 10;
 }
 
 .timeline-item:nth-child(2) {
     position: absolute;
-    left: 5%;
+    left: 2%;
     top: 50px;
-    margin-left: 0;
-    margin-right: 0;
-    transform: none;
+    width: 400px;
+    z-index: 10;
 }
 
 /* Remove additional positioning rules */
@@ -605,33 +605,8 @@ body {
     z-index: 15;
 }
 
-/* Add country indicators */
-.timeline-item:nth-child(1) .timeline-marker::before {
-    content: 'UK';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    font-size: 12px;
-    z-index: 20;
-}
-
-.timeline-item:nth-child(2) .timeline-marker::before {
-    content: 'IN';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    font-size: 12px;
-    z-index: 20;
-}
-
-/* Station roof */
-.timeline-marker::before {
+/* Station roof - only for visual decoration, not for text */
+.timeline-marker::after {
     content: '';
     position: absolute;
     top: -10px;
@@ -641,10 +616,11 @@ body {
     background: #5a4037;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(90, 64, 55, 0.5);
+    z-index: 5;
 }
 
 /* Station platform */
-.timeline-marker::after {
+.timeline-marker::before {
     content: '';
     position: absolute;
     bottom: -5px;
@@ -654,6 +630,33 @@ body {
     background: #8b5a3c;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgba(139, 90, 60, 0.3);
+    z-index: 5;
+}
+
+/* UK Station country indicator */
+.timeline-item:nth-child(1) .timeline-marker .station-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 25;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* India Station country indicator */
+.timeline-item:nth-child(2) .timeline-marker .station-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 25;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .timeline-content {
