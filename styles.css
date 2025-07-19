@@ -508,8 +508,34 @@ body {
     align-items: flex-start;
 }
 
-/* Remove curved track */
-.timeline::after,
+/* Add connecting arrow - India to UK direction */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    right: 25%;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5a3c, #d4af37);
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* Add arrow head pointing to UK */
+.timeline::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 23%;
+    width: 12px;
+    height: 12px;
+    border-right: 4px solid #d4af37;
+    border-top: 4px solid #d4af37;
+    transform: translateY(-50%) rotate(45deg);
+    display: block;
+}
+
+/* Remove any remaining train-related elements */
 .track-rails,
 .railway-ties,
 .train {
