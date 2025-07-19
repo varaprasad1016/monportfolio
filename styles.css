@@ -6,6 +6,7 @@
 }
 
 body {
+    cursor: url('https://www.cleanpng.com/png-taylor-swift-silhouette-abstract-art-silhouette-wo-8026806/download-png.html'), auto;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: #2c3e50;
@@ -1075,7 +1076,7 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -1112,34 +1113,38 @@ body {
         gap: 2rem;
     }
 
+    .timeline {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 15px;
+    }
+
+    .timeline::before {
+        left: 50%;
+        right: auto;
+        width: 4px;
+        height: 100%;
+        transform: translateX(-50%);
+    }
+
     .timeline::after {
-        left: 2%;
-        width: 96%;
-        height: 300px;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
-    
+
     .timeline-item {
-        position: relative;
         width: 100%;
-        left: 0 !important;
-        right: auto !important;
-        top: auto !important;
-        transform: none !important;
-        margin-bottom: 3rem;
+        margin: 20px 0;
     }
-    
-    .timeline-marker {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
-        margin: 0 auto 1rem;
-        width: 50px;
-        height: 60px;
+
+    .timeline-item:nth-child(1),
+    .timeline-item:nth-child(2) {
+        order: unset;
     }
-    
-    .timeline .train {
-        display: none;
+
+    .timeline-content {
+        margin-bottom: 40px;
     }
 
     .projects-grid {
@@ -1173,7 +1178,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
     }
@@ -1209,5 +1214,22 @@ body {
         width: 50px;
         height: 50px;
         font-size: 1.2rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .timeline-content h4 {
+        font-size: 1rem;
+    }
+
+    .timeline-date {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .timeline-content li {
+        font-size: 0.9rem;
     }
 }
