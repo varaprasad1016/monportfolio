@@ -6,7 +6,7 @@
 }
 
 body {
-    cursor: url('https://www.cleanpng.com/png-taylor-swift-silhouette-abstract-art-silhouette-wo-8026806/download-png.html'), auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%238b5a3c" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="%23d4af37" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>') 12 12, auto;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: #2c3e50;
@@ -22,7 +22,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: linear-gradient(135deg, #faf9f7 0%, #f8f6f3 25%, #f5f3f0 50%, #f2f0ed 75%, #ede9e6 100%);
+    background: linear-gradient(135deg, #faf9f7 0%, #f8f6f3 25%, #976a25 50%, #f2f0ed 75%, #ede9e6 100%);
 }
 
 .sparkle {
