@@ -1,338 +1,498 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="auto">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mounika Kallepalli - Data Analyst Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <!-- Elegant Background -->
-    <div class="elegant-bg">
-        <div class="sparkle sparkle-1"></div>
-        <div class="sparkle sparkle-2"></div>
-        <div class="sparkle sparkle-3"></div>
-        <div class="sparkle sparkle-4"></div>
-        <div class="sparkle sparkle-5"></div>
-    </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">Mounika</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+<title>Mounika Kallepalli — Data Analyst</title>
+<meta name="description" content="Data analyst in Coventry, UK, working in SQL, Python and Power BI. MSc in Data Science, IBM and UC Davis certified. Reporting, KPI dashboards, data pipelines and applied machine learning.">
+<meta name="author" content="Mounika Kallepalli">
+<link rel="canonical" href="https://mounikakallepalli.netlify.app/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Mounika Kallepalli — Data Analyst">
+<meta property="og:description" content="Data analyst in Coventry, UK, working in SQL, Python and Power BI. Reporting, KPI dashboards, data pipelines and applied machine learning.">
+<meta property="og:url" content="https://mounikakallepalli.netlify.app/">
+<meta property="og:image" content="https://mounikakallepalli.netlify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="profile:first_name" content="Mounika">
+<meta property="profile:last_name" content="Kallepalli">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mounika Kallepalli — Data Analyst">
+<meta name="twitter:description" content="Data analyst in Coventry, UK, working in SQL, Python and Power BI.">
+<meta name="twitter:image" content="https://mounikakallepalli.netlify.app/og-image.png">
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0f12" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  // Resolve the saved theme before first paint so there is no flash of the wrong mode.
+  document.documentElement.classList.add('js');
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mounika Kallepalli",
+  "jobTitle": "Data Analyst",
+  "email": "mailto:mon.in.london2001@gmail.com",
+  "url": "https://mounikakallepalli.netlify.app/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Coventry",
+    "addressCountry": "GB"
+  },
+  "worksFor": { "@type": "Organization", "name": "Neatcom Telematics" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Coventry University" },
+    { "@type": "CollegeOrUniversity", "name": "PBSC of Arts and Sciences" }
+  ],
+  "knowsAbout": ["SQL", "Python", "Power BI", "Tableau", "Data Visualization", "Machine Learning", "Statistical Analysis"],
+  "sameAs": ["https://www.linkedin.com/in/mounika-kallepalli-565b441a5"]
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/>
+  </symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M6.94 5.5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0M3.3 21h3.4V8.9H3.3zm6.1 0h3.4v-6.6c0-1.74.33-3.43 2.49-3.43 2.12 0 2.15 1.99 2.15 3.54V21H21v-7.3c0-3.45-.75-5.1-4.03-5.1-1.57 0-2.63.86-3.07 1.68h-.05V8.9H9.4z"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.5v11.5"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4 19.5h16"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11"/><circle cx="12" cy="10" r="2.6"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m4.5 12.5 5 5 10-11"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.2A8.2 8.2 0 1 1 9.8 4a6.6 6.6 0 0 0 10.2 10.2"/>
+  </symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+    <path d="M4 7h16M4 12h16M4 17h16"/>
+  </symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6 6 18"/>
+  </symbol>
+  <symbol id="i-top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V6"/><path d="m6 11.5 6-6 6 6"/>
+  </symbol>
+</svg>
+
+<div class="scroll-progress" role="presentation"><span id="scroll-bar"></span></div>
+
+<!-- Header -->
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="#top" aria-label="Mounika Kallepalli, home">
+      <span class="brand-mark" aria-hidden="true">MK</span>
+      <span class="brand-text">
+        <strong>Mounika Kallepalli</strong>
+        <span>Data Analyst</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        Hello, I'm <span class="elegant-text">Mounika Kallepalli</span>
-                    </h1>
-                    <p class="hero-subtitle">Data Analyst & Storyteller</p>
-                    <p class="hero-description">
-                        Crafting beautiful insights from complex data with 2+ years of experience in SQL, Python, and advanced visualization. Every dataset tells a story, and I'm here to help you discover yours.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-secondary">View My Work</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="elegant-card">
-                        <div class="profile-image">
-                            <div class="profile-placeholder">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                        </div>
-                        <div class="floating-elements">
-                            <div class="floating-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="floating-icon"><i class="fas fa-database"></i></div>
-                            <div class="floating-icon"><i class="fab fa-python"></i></div>
-                            <div class="floating-icon"><i class="fas fa-magic"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="header-actions">
+      <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="icon icon-light" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="icon icon-dark" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <a class="btn btn-sm btn-primary header-cv" href="Mounika-Kallepalli-CV.pdf" download>
+        <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+        <span>CV</span>
+      </a>
+      <button type="button" class="icon-btn nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <svg class="icon icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon icon-shut" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="about-intro">
-                        <p>Like a carefully crafted song, I believe every dataset has its own rhythm and story to tell. As a highly analytical and results-oriented Data Analyst with 2+ years of experience, I specialize in transforming complex datasets into actionable insights using SQL, Python, and advanced data visualization.</p>
-                        <p>With certifications from IBM and UC Davis in Data Science and SQL, I'm passionate about building predictive models and optimizing data workflows to drive meaningful business improvements. Every project is an opportunity to create something beautiful and impactful.</p>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Coventry, United Kingdom</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>mon.in.london2001@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-linkedin"></i>
-                            <a href="https://linkedin.com/in/mounika-kallepalli-565b441a5" target="_blank">LinkedIn Profile</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-card">
-                    <div class="education">
-                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-                        <div class="edu-item">
-                            <h4>Master of Science in Data Science</h4>
-                            <p>Coventry University, United Kingdom</p>
-                            <span>2023 – 2024</span>
-                        </div>
-                        <div class="edu-item">
-                            <h4>Bachelor of Science in Data Science</h4>
-                            <p>PBSC of Arts and Sciences, India</p>
-                            <span>2019 – 2022</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main id="main">
+  <span id="top"></span>
 
-    <!-- Experience Section -->
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">My Journey</h2>
-            <div class="timeline">
-                <div class="track-rails"></div>
-                <div class="railway-ties"></div>
-                <div class="train"></div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker">
-                        <div class="station-details">UK</div>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Data Analyst</h3>
-                        <h4>Neatcom Telematics – Coventry, UK</h4>
-                        <span class="timeline-date">April 2023 – Present</span>
-                        <ul>
-                            <li>Built and optimized complex SQL queries to support reporting and data extraction, improving operational efficiency by 20%</li>
-                            <li>Developed and maintained interactive dashboards using Excel and Power BI to monitor key performance indicators, enabling stakeholders to identify critical trends</li>
-                            <li>Partnered cross-functionally with operations and sales teams to streamline data ingestion and processing pipelines, reducing data retrieval time by 15%</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker">
-                        <div class="station-details">IN</div>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Data Science Intern</h3>
-                        <h4>Codegnan IT Solutions – India</h4>
-                        <span class="timeline-date">December 2020 – April 2021</span>
-                        <ul>
-                            <li>Designed and implemented a Machine Learning model using Python and SQL to predict sanitizer needs in academic settings, achieving 92% prediction accuracy</li>
-                            <li>Contributed to the development of backend systems, integrating SQL databases with Raspberry Pi for automated school bell systems</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+          Coventry, United Kingdom
+        </p>
+        <h1>Mounika Kallepalli</h1>
+        <p class="hero-role">Data Analyst</p>
+        <p class="hero-lead">
+          I turn operational data into decisions. Day to day that means SQL and Power BI for
+          reporting and KPI dashboards, Python for modelling, and the ingestion pipelines that
+          keep the numbers trustworthy.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#experience">
+            <span>View my work</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="Mounika-Kallepalli-CV.pdf" download>
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            <span>Download CV</span>
+          </a>
+          <a class="btn btn-quiet" href="mailto:mon.in.london2001@gmail.com">
+            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+            <span>Email me</span>
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-x-ray"></i>
-                        </div>
-                        <h3>COVID-19 Prediction Using Chest X-Rays</h3>
-                    </div>
-                    <p>Trained Convolutional Neural Networks (CNNs) including ResNet and GoogleNet on the Mendeley dataset, achieving a remarkable accuracy of 96.86% for COVID-19 prediction. This project demonstrates the power of deep learning in medical diagnostics.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">CNN</span>
-                        <span class="tech-tag">ResNet</span>
-                        <span class="tech-tag">GoogleNet</span>
-                        <span class="tech-tag">Medical AI</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3>Student Record Management System</h3>
-                    </div>
-                    <p>Developed a comprehensive full-stack web application using Flask and SQL for student data tracking and class scheduling. This system significantly improved administrative efficiency for academic staff through intuitive design and robust functionality.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Web Development</span>
-                        <span class="tech-tag">Database Design</span>
-                    </div>
-                </div>
-            </div>
+      <aside class="hero-card reveal" aria-label="Profile summary">
+        <div class="hero-card-top">
+          <span class="avatar" aria-hidden="true">MK</span>
+          <div>
+            <p class="hero-card-name">Data Analyst</p>
+            <p class="hero-card-org">Neatcom Telematics · Coventry</p>
+          </div>
         </div>
-    </section>
+        <dl class="facts">
+          <div><dt>Focus</dt><dd>SQL · Power BI · Python</dd></div>
+          <div><dt>Education</dt><dd>MSc Data Science, Coventry University</dd></div>
+          <div><dt>Certified</dt><dd>IBM Data Science · UC Davis SQL</dd></div>
+        </dl>
+        <a class="hero-card-link" href="https://www.linkedin.com/in/mounika-kallepalli-565b441a5" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>
+          <span>Connect on LinkedIn</span>
+        </a>
+      </aside>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Languages & Tools</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span>Python (Pandas, NumPy, Scikit-learn)</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>SQL (MySQL)</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Power BI</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Excel (Advanced, Power Query)</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Tableau</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> Techniques & Methods</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Classification</span>
-                        <span class="skill-tag">Regression</span>
-                        <span class="skill-tag">Deep Learning</span>
-                        <span class="skill-tag">Data Cleaning</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Model Development</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-award"></i> Certifications</h3>
-                    <div class="cert-list">
-                        <div class="cert-item">
-                            <h4>IBM Data Science Professional Certificate</h4>
-                            <p>Comprehensive program covering Python for Data Science, Machine Learning, SQL, and Data Visualization</p>
-                            <div class="cert-scores">
-                                <span>Machine Learning: 94%</span>
-                                <span>Capstone Project: 96%</span>
-                                <span>SQL: 93.82%</span>
-                            </div>
-                        </div>
-                        <div class="cert-item">
-                            <h4>UC Davis SQL for Data Science</h4>
-                            <p>Advanced SQL techniques and database management for data science applications</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- Impact metrics -->
+  <section class="metrics" aria-label="Selected results">
+    <div class="shell">
+      <ul class="metric-grid">
+        <li class="stat reveal">
+          <p class="stat-value" data-count="20" data-suffix="%">20%</p>
+          <p class="stat-label">Gain in operational efficiency from SQL query optimisation</p>
+          <p class="stat-source">Neatcom Telematics</p>
+        </li>
+        <li class="stat reveal">
+          <p class="stat-value" data-count="15" data-suffix="%">15%</p>
+          <p class="stat-label">Faster data retrieval after redesigning ingestion pipelines</p>
+          <p class="stat-source">Neatcom Telematics</p>
+        </li>
+        <li class="stat reveal">
+          <p class="stat-value" data-count="96.86" data-suffix="%" data-decimals="2">96.86%</p>
+          <p class="stat-label">Accuracy classifying COVID-19 from chest X-ray imaging</p>
+          <p class="stat-source">CNN research project</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="section-kicker">01 — About</p>
+        <h2>Analytics that people actually use</h2>
+      </header>
+      <div class="about-grid">
+        <div class="prose reveal">
+          <p>
+            I'm a data analyst at <strong>Neatcom Telematics</strong> in Coventry, where I build and
+            maintain the SQL and Power BI layer that the operations and sales teams rely on — the
+            reporting, the KPI dashboards, and the pipelines feeding them.
+          </p>
+          <p>
+            My background sits between analytics and applied machine learning: an MSc in Data Science
+            from Coventry University, the IBM Data Science Professional Certificate, and project work
+            in deep learning for medical imaging. I'm most useful where a messy dataset has to become
+            a number somebody can act on.
+          </p>
+          <p>
+            Beyond the queries, I care about the parts that make analysis stick: clean data, clear
+            definitions, and a dashboard a stakeholder can read without a walkthrough.
+          </p>
         </div>
-    </section>
+        <ul class="about-list reveal">
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>Reporting &amp; BI</strong><span>Power BI and advanced Excel dashboards built around the KPIs a team is measured on.</span></div>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>SQL &amp; data engineering</strong><span>Query optimisation, data extraction and ingestion pipelines that hold up under load.</span></div>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>Machine learning</strong><span>Classification, regression and deep learning in Python, from development to deployment.</span></div>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <div><strong>Working across teams</strong><span>Translating between operations, sales and the data, so the output answers the real question.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Create Something Beautiful Together</h2>
-            <div class="contact-content">
-                <div class="contact-info-section">
-                    <h3>Get In Touch</h3>
-                    <p>I'm always excited to discuss new opportunities, collaborate on interesting projects, or simply chat about the fascinating world of data science. Every conversation is a chance to learn something new!</p>
-                    <div class="contact-methods">
-                        <a href="mailto:mon.in.london2001@gmail.com" class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>mon.in.london2001@gmail.com</span>
-                        <a href="https://linkedin.com/in/mounika-kallepalli-565b441a5" target="_blank" class="contact-method">
-                            <i class="fab fa-linkedin"></i>
-                            <span>LinkedIn Profile</span>
-                        </a>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+  <!-- Experience -->
+  <section id="experience" class="section section-alt">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="section-kicker">02 — Experience</p>
+        <h2>Where I've worked</h2>
+      </header>
+      <ol class="timeline">
+        <li class="timeline-item reveal">
+          <div class="timeline-meta">
+            <p class="timeline-date">Apr 2023 — Present</p>
+            <p class="timeline-place">Coventry, UK</p>
+          </div>
+          <div class="timeline-body">
+            <h3>Data Analyst</h3>
+            <p class="timeline-org">Neatcom Telematics</p>
+            <ul>
+              <li>Built and optimised complex SQL queries supporting reporting and data extraction, improving operational efficiency by 20%.</li>
+              <li>Developed and maintained interactive Excel and Power BI dashboards tracking key performance indicators, giving stakeholders the trends they needed to make faster decisions.</li>
+              <li>Partnered with operations and sales to streamline data ingestion and processing pipelines, cutting data retrieval time by 15% and feeding strategic planning.</li>
+            </ul>
+            <ul class="chips">
+              <li>SQL</li><li>Power BI</li><li>Excel / Power Query</li><li>Stakeholder reporting</li>
+            </ul>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-meta">
+            <p class="timeline-date">Dec 2020 — Apr 2021</p>
+            <p class="timeline-place">India</p>
+          </div>
+          <div class="timeline-body">
+            <h3>Data Science Intern</h3>
+            <p class="timeline-org">Codegnan IT Solutions</p>
+            <ul>
+              <li>Designed and implemented a machine learning model in Python and SQL forecasting sanitiser demand in academic settings, reaching 92% prediction accuracy and improving resource allocation.</li>
+              <li>Contributed to backend development, integrating SQL databases with Raspberry Pi hardware for an automated school bell system.</li>
+            </ul>
+            <ul class="chips">
+              <li>Python</li><li>SQL</li><li>Scikit-learn</li><li>Raspberry Pi</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="section-kicker">03 — Projects</p>
+        <h2>Selected projects</h2>
+      </header>
+      <div class="project-grid">
+        <!-- To add a repository or demo, drop a link into .project-links:
+             <a class="project-link" href="https://github.com/..." target="_blank" rel="noopener noreferrer">Source<svg class="icon"><use href="#i-arrow"/></svg></a> -->
+        <article class="project reveal">
+          <p class="project-tag">Deep learning · Medical imaging</p>
+          <h3>COVID-19 prediction from chest X-rays</h3>
+          <p>
+            Trained convolutional neural networks — ResNet and GoogleNet — on the Mendeley chest
+            X-ray dataset, reaching 96.86% classification accuracy. Preprocessed the medical image
+            metadata and automated the training pipeline in Python and SQL for efficient model
+            development.
+          </p>
+          <dl class="project-result">
+            <dt>Result</dt>
+            <dd>96.86% accuracy on COVID-19 prediction</dd>
+          </dl>
+          <ul class="chips">
+            <li>Python</li><li>CNN</li><li>ResNet</li><li>GoogleNet</li><li>SQL</li>
+          </ul>
+          <div class="project-links"></div>
+        </article>
+
+        <article class="project reveal">
+          <p class="project-tag">Full-stack · Internal tooling</p>
+          <h3>Student record management system</h3>
+          <p>
+            Built a full-stack web application in Flask and SQL for comprehensive student data
+            tracking and class scheduling, including the database design behind it, to make
+            day-to-day administration easier for academic staff.
+          </p>
+          <dl class="project-result">
+            <dt>Result</dt>
+            <dd>Improved administrative efficiency for academic staff</dd>
+          </dl>
+          <ul class="chips">
+            <li>Flask</li><li>Python</li><li>SQL</li><li>Database design</li>
+          </ul>
+          <div class="project-links"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section section-alt">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="section-kicker">04 — Skills</p>
+        <h2>Technical toolkit</h2>
+      </header>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>Languages &amp; libraries</h3>
+          <ul class="chips chips-lg">
+            <li>Python</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>SQL</li><li>MySQL</li><li>Flask</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Mounika Kallepalli. Crafted with love and data.</p>
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/mounika-kallepalli-565b441a5" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:mon.in.london2001@gmail.com">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="skill-group reveal">
+          <h3>Analytics &amp; BI</h3>
+          <ul class="chips chips-lg">
+            <li>Power BI</li><li>Tableau</li><li>Excel (Advanced)</li><li>Power Query</li><li>Data visualisation</li>
+          </ul>
         </div>
-    </footer>
+        <div class="skill-group reveal">
+          <h3>Techniques</h3>
+          <ul class="chips chips-lg">
+            <li>Machine learning</li><li>Classification</li><li>Regression</li><li>Deep learning</li><li>Statistical analysis</li><li>Data cleaning</li><li>Model development</li><li>Model deployment</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Workflow &amp; strengths</h3>
+          <ul class="chips chips-lg">
+            <li>GitHub</li><li>Raspberry Pi</li><li>Problem solving</li><li>Cross-team collaboration</li><li>Communication</li><li>Data-driven decisions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- Credentials -->
+  <section id="credentials" class="section">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="section-kicker">05 — Credentials</p>
+        <h2>Education &amp; certifications</h2>
+      </header>
+      <div class="cred-grid">
+        <div class="cred-col reveal">
+          <h3 class="cred-head">Education</h3>
+          <article class="cred">
+            <h4>MSc, Data Science</h4>
+            <p class="cred-org">Coventry University, United Kingdom</p>
+            <p class="cred-date">2023 — 2024</p>
+          </article>
+          <article class="cred">
+            <h4>BSc, Data Science</h4>
+            <p class="cred-org">PBSC of Arts and Sciences, India</p>
+            <p class="cred-date">2019 — 2022</p>
+          </article>
+        </div>
+        <div class="cred-col reveal">
+          <h3 class="cred-head">Certifications</h3>
+          <article class="cred">
+            <h4>IBM Data Science Professional Certificate</h4>
+            <p class="cred-org">Coursera</p>
+            <p class="cred-note">Python for Data Science, Machine Learning, SQL, Data Visualisation and a capstone project.</p>
+            <ul class="scores">
+              <li><span>Machine Learning with Python</span><strong>94%</strong></li>
+              <li><span>Applied Data Science Capstone</span><strong>96%</strong></li>
+              <li><span>SQL for Data Science</span><strong>93.82%</strong></li>
+            </ul>
+          </article>
+          <article class="cred">
+            <h4>SQL for Data Science</h4>
+            <p class="cred-org">University of California, Davis · Coursera</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section-contact">
+    <div class="shell">
+      <div class="contact-card reveal">
+        <p class="section-kicker">06 — Contact</p>
+        <h2>Let's talk about your data</h2>
+        <p class="contact-lead">
+          Happy to talk about analyst and BI work, or any project where the reporting needs to get
+          sharper. The quickest way to reach me is email.
+        </p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:mon.in.london2001@gmail.com">
+            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+            <span>mon.in.london2001@gmail.com</span>
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/mounika-kallepalli-565b441a5" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="btn btn-ghost" href="Mounika-Kallepalli-CV.pdf" download>
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            <span>Download CV</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <p>&copy; <span id="year">2026</span> Mounika Kallepalli</p>
+    <div class="footer-links">
+      <a href="mailto:mon.in.london2001@gmail.com" aria-label="Email">
+        <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/mounika-kallepalli-565b441a5" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>
+      </a>
+      <a href="#top" aria-label="Back to top">
+        <svg class="icon" aria-hidden="true"><use href="#i-top"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
 </body>
 </html>

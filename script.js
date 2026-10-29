@@ -1,492 +1,196 @@
-// Mobile Navigation
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+/* Mounika Kallepalli — Portfolio
+   Small, dependency-free enhancements. The page is fully usable without this file. */
 
-hamburger?.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+(function () {
+  'use strict';
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger?.classList.remove('active');
-    navMenu?.classList.remove('active');
-}));
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+  /* ---------- Theme ---------- */
+
+  var themeToggle = document.getElementById('theme-toggle');
+
+  function currentTheme() {
+    var set = root.getAttribute('data-theme');
+    if (set === 'light' || set === 'dark') return set;
+    return prefersDark.matches ? 'dark' : 'light';
+  }
+
+  function syncThemeLabel() {
+    if (!themeToggle) return;
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    themeToggle.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      syncThemeLabel();
     });
-});
+    prefersDark.addEventListener('change', syncThemeLabel);
+    syncThemeLabel();
+  }
 
-// Navbar background on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(139, 90, 60, 0.95)';
-        navbar.style.boxShadow = '0 2px 20px rgba(139, 90, 60, 0.3)';
-    } else {
-        navbar.style.background = 'rgba(139, 90, 60, 0.9)';
-        navbar.style.boxShadow = 'none';
+  /* ---------- Mobile navigation ---------- */
+
+  var nav = document.getElementById('site-nav');
+  var navToggle = document.getElementById('nav-toggle');
+
+  function setNav(open) {
+    if (!nav || !navToggle) return;
+    nav.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', function () {
+      setNav(!nav.classList.contains('is-open'));
+    });
+
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setNav(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setNav(false);
+        navToggle.focus();
+      }
+    });
+
+    // Leaving the mobile breakpoint with the menu open would otherwise leave the page scroll-locked.
+    window.matchMedia('(min-width: 901px)').addEventListener('change', function (mq) {
+      if (mq.matches) setNav(false);
+    });
+  }
+
+  /* ---------- Header state and scroll progress ---------- */
+
+  var header = document.getElementById('site-header');
+  var bar = document.getElementById('scroll-bar');
+  var ticking = false;
+
+  function onScroll() {
+    var y = window.scrollY;
+    if (header) header.classList.toggle('is-scrolled', y > 8);
+    if (bar) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
     }
-});
+    ticking = false;
+  }
 
-// Skill bar animations
-const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            if (entry.target.classList.contains('skill-progress')) {
-                const width = entry.target.getAttribute('data-width');
-                entry.target.style.width = width + '%';
-            }
-            
-            // Add animation classes
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe skill bars
-document.querySelectorAll('.skill-progress').forEach(bar => {
-    observer.observe(bar);
-});
-
-// Observe elements for animations
-document.querySelectorAll('.skill-category, .project-card, .timeline-item').forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-});
-
-// Add slide animations to about section
-document.querySelector('.about-text')?.classList.add('slide-in-left');
-document.querySelector('.profile-card')?.classList.add('slide-in-right');
-
-if (document.querySelector('.about-text')) {
-    observer.observe(document.querySelector('.about-text'));
-}
-if (document.querySelector('.profile-card')) {
-    observer.observe(document.querySelector('.profile-card'));
-}
-
-// Contact form handling
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
-        const message = contactForm.querySelector('textarea').value;
-        
-        // Simple validation
-        if (!name || !email || !subject || !message) {
-            showElegantAlert('Please fill in all fields. ✨');
-            return;
-        }
-        
-        // Show success message
-        showElegantAlert('Thank you for your message! I\'ll get back to you soon. 💫');
-        contactForm.reset();
-    });
-}
-
-// Elegant alert function
-function showElegantAlert(message) {
-    const alertBox = document.createElement('div');
-    alertBox.className = 'elegant-alert';
-    alertBox.innerHTML = `
-        <div class="alert-content">
-            <p>${message}</p>
-            <button onclick="this.parentElement.parentElement.remove()">✨ OK</button>
-        </div>
-    `;
-    
-    alertBox.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(139, 90, 60, 0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        backdrop-filter: blur(10px);
-    `;
-    
-    const style = document.createElement('style');
-    style.textContent = `
-        .elegant-alert .alert-content {
-            background: linear-gradient(135deg, #f5f1eb, #e8ddd4);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(139, 90, 60, 0.3);
-            border: 2px solid #d4af37;
-            max-width: 400px;
-            animation: alertSlideIn 0.5s ease;
-        }
-        
-        .elegant-alert p {
-            color: #8b5a3c;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-        
-        .elegant-alert button {
-            background: linear-gradient(135deg, #8b5a3c, #d4af37);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .elegant-alert button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 90, 60, 0.4);
-        }
-        
-        @keyframes alertSlideIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-    `;
-    
-    document.head.appendChild(style);
-    document.body.appendChild(alertBox);
-}
-
-// Elegant typing animation for hero title
-function elegantTypeWriter(element, text, speed = 80) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
     }
-    
-    type();
-}
+  }, { passive: true });
+  onScroll();
 
-// Initialize typing animation when page loads
-window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const nameSpan = heroTitle.querySelector('.elegant-text');
-        const name = nameSpan ? nameSpan.textContent : 'Mounika Kallepalli';
-        
-        // Clear and set up for typing
-        heroTitle.innerHTML = 'Hello, I\'m <span class="elegant-text"></span>';
-        const elegantSpan = heroTitle.querySelector('.elegant-text');
-        
-        setTimeout(() => {
-            elegantTypeWriter(elegantSpan, name, 60);
-        }, 1000);
-    }
-});
+  /* ---------- Active section in the nav ---------- */
 
-// Elegant parallax effect for floating icons
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.floating-icon');
-    
-    parallaxElements.forEach((element, index) => {
-        const speed = 0.3 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
-    });
-});
+  var navLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')) : [];
+  var sections = navLinks
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
 
-// Sparkle animation
-function createSparkle() {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    sparkle.style.position = 'fixed';
-    sparkle.style.width = Math.random() * 6 + 2 + 'px';
-    sparkle.style.height = sparkle.style.width;
-    sparkle.style.background = 'linear-gradient(45deg, #d4af37, #ffd700)';
-    sparkle.style.borderRadius = '50%';
-    sparkle.style.opacity = Math.random() * 0.8 + 0.2;
-    sparkle.style.pointerEvents = 'none';
-    sparkle.style.zIndex = '1';
-    sparkle.style.left = Math.random() * window.innerWidth + 'px';
-    sparkle.style.top = Math.random() * window.innerHeight + 'px';
-    sparkle.style.animation = 'sparkle 3s ease-in-out infinite';
-    
-    document.body.appendChild(sparkle);
-    
-    setTimeout(() => {
-        sparkle.remove();
-    }, 3000);
-}
-
-// Create sparkles periodically
-setInterval(createSparkle, 2000);
-
-// Add loading animation
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// Smooth reveal animations on scroll
-const revealElements = document.querySelectorAll('.section-title, .hero-description, .about-intro');
-
-revealElements.forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-});
-
-// Dynamic year in footer
-const currentYear = new Date().getFullYear();
-const footerYear = document.querySelector('.footer-content p');
-if (footerYear) {
-    footerYear.innerHTML = footerYear.innerHTML.replace('2024', currentYear);
-}
-
-// Enhanced hover effects for project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) scale(1.02)';
-        card.style.boxShadow = '0 20px 40px rgba(139, 90, 60, 0.3)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-        card.style.boxShadow = '0 10px 30px rgba(139, 90, 60, 0.2)';
-    });
-});
-
-// Elegant scroll progress indicator
-function initScrollProgress() {
-    const scrollProgress = document.createElement('div');
-    scrollProgress.id = 'scroll-progress';
-    scrollProgress.style.position = 'fixed';
-    scrollProgress.style.top = '0';
-    scrollProgress.style.left = '0';
-    scrollProgress.style.width = '0%';
-    scrollProgress.style.height = '3px';
-    scrollProgress.style.background = 'linear-gradient(45deg, #8b5a3c, #d4af37)';
-    scrollProgress.style.zIndex = '9999';
-    scrollProgress.style.transition = 'width 0.3s ease';
-    
-    document.body.appendChild(scrollProgress);
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.body.offsetHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        scrollProgress.style.width = scrollPercent + '%';
-    });
-}
-
-// Initialize scroll progress
-initScrollProgress();
-
-// Elegant cursor trail effect
-function createCursorTrail() {
-    const trail = [];
-    const trailLength = 10;
-    
-    document.addEventListener('mousemove', (e) => {
-        trail.push({ x: e.clientX, y: e.clientY });
-        
-        if (trail.length > trailLength) {
-            trail.shift();
-        }
-        
-        // Remove existing trail elements
-        document.querySelectorAll('.cursor-trail').forEach(el => el.remove());
-        
-        // Create new trail elements
-        trail.forEach((point, index) => {
-            const trailElement = document.createElement('div');
-            trailElement.className = 'cursor-trail';
-            trailElement.style.cssText = `
-                position: fixed;
-                width: ${6 - (index * 0.5)}px;
-                height: ${6 - (index * 0.5)}px;
-                background: radial-gradient(circle, #d4af37, transparent);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9998;
-                left: ${point.x}px;
-                top: ${point.y}px;
-                opacity: ${(index + 1) / trailLength};
-                transition: opacity 0.3s ease;
-            `;
-            
-            document.body.appendChild(trailElement);
-            
-            setTimeout(() => {
-                trailElement.remove();
-            }, 500);
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var id = '#' + entry.target.id;
+        navLinks.forEach(function (a) {
+          var active = a.getAttribute('href') === id;
+          a.classList.toggle('is-active', active);
+          if (active) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
         });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sections.forEach(function (s) { spy.observe(s); });
+
+    // Back on the hero no section is current, so nothing should stay highlighted.
+    window.addEventListener('scroll', function () {
+      if (window.scrollY + window.innerHeight * 0.45 < sections[0].offsetTop) {
+        navLinks.forEach(function (a) {
+          a.classList.remove('is-active');
+          a.removeAttribute('aria-current');
+        });
+      }
+    }, { passive: true });
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+
+  var revealables = document.querySelectorAll('.reveal');
+
+  if (!('IntersectionObserver' in window) || reduceMotion.matches) {
+    revealables.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    var revealer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    // Stagger siblings that enter together so a grid reads left to right.
+    revealables.forEach(function (el) {
+      var parent = el.parentElement;
+      var siblings = parent ? Array.prototype.filter.call(parent.children, function (c) {
+        return c.classList.contains('reveal');
+      }) : [];
+      var index = siblings.indexOf(el);
+      if (index > 0) el.style.transitionDelay = Math.min(index * 80, 320) + 'ms';
+      revealer.observe(el);
     });
-}
+  }
 
-// Initialize cursor trail
-createeCursorTrail();
+  /* ---------- Count-up for the metrics ---------- */
 
-// Elegant section transitions
-function initSectionTransitions() {
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        section.style.transition = 'all 0.8s ease';
-        
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                } else {
-                    entry.target.style.opacity = '0.8';
-                    entry.target.style.transform = 'translateY(20px)';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        sectionObserver.observe(section);
-    });
-}
+  var counters = document.querySelectorAll('.stat-value[data-count]');
 
-// Initialize section transitions
-initSectionTransitions();
+  function runCounter(el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var duration = 1100;
+    var start = null;
 
-// Add elegant loading screen
-function showLoadingScreen() {
-    const loader = document.createElement('div');
-    loader.id = 'elegant-loader';
-    loader.innerHTML = `
-        <div class="loader-content">
-            <div class="loader-sparkle"></div>
-            <p>Loading Portfolio...</p>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-        </div>
-    `;
-    
-    const loaderStyle = document.createElement('style');
-    loaderStyle.textContent = `
-        #elegant-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #f5f1eb, #e8ddd4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10001;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loader-content {
-            text-align: center;
-            color: #8b5a3c;
-        }
-        
-        .loader-sparkle {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #d4af37, #ffd700);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            animation: sparkleRotate 2s linear infinite;
-        }
-        
-        .loader-content p {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-        
-        .loader-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(139, 90, 60, 0.2);
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        
-        .loader-progress {
-            height: 100%;
-            background: linear-gradient(45deg, #8b5a3c, #d4af37);
-            width: 0%;
-            animation: loadProgress 3s ease-in-out;
-        }
-        
-        @keyframes sparkleRotate {
-            from { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            to { transform: rotate(360deg) scale(1); }
-        }
-        
-        @keyframes loadProgress {
-            to { width: 100%; }
-        }
-    `;
-    
-    document.head.appendChild(loaderStyle);
-    document.body.appendChild(loader);
-    
-    // Remove loader after 3 seconds
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.remove();
-            loaderStyle.remove();
-        }, 500);
-    }, 3000);
-}
+    function frame(now) {
+      if (start === null) start = now;
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (t < 1) window.requestAnimationFrame(frame);
+    }
 
-// Show loading screen on page load
-if (document.readyState === 'loading') {
-    showLoadingScreen();
-}
+    window.requestAnimationFrame(frame);
+  }
 
-// Initialize all animations on DOM content loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Add initial fade-in class to elements
-    const animatedElements = document.querySelectorAll('.section-title, .hero-description, .about-intro, .skill-category, .project-card, .timeline-item');
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in');
-    });
-    
-    // Add sparkle animation to CSS
-    const sparkleStyle = document.createElement('style');
-    sparkleStyle.textContent = `
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1) rotate(180deg); }
-        }
-    `;
-    document.head.appendChild(sparkleStyle);
-});
+  if (counters.length && 'IntersectionObserver' in window && !reduceMotion.matches) {
+    var counterObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        runCounter(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach(function (el) { counterObs.observe(el); });
+  }
+
+  /* ---------- Footer year ---------- */
+
+  var year = document.getElementById('year');
+  if (year) year.textContent = String(new Date().getFullYear());
+})();
